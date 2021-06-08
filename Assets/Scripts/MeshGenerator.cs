@@ -8,7 +8,7 @@ public class MeshGenerator : MonoBehaviour {
 	public MeshFilter walls;
 	public MeshFilter cave;
 
-	public bool is2D;
+	//public bool is2D;
 
 	List<Vector3> vertices;
 	List<int> triangles;
@@ -49,13 +49,9 @@ public class MeshGenerator : MonoBehaviour {
 			uvs[i] = new Vector2(percentX,percentY);
 		}
 		mesh.uv = uvs;
-	
 
-		if (is2D) {
-			Generate2DColliders();
-		} else {
-			CreateWallMesh ();
-		}
+
+		CreateWallMesh();
 	}
 
 	void CreateWallMesh() {

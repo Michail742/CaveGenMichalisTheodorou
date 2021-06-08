@@ -10,6 +10,7 @@ public class PerlinNoise : MonoBehaviour
     public float multiplier = 0f;
     float perlinNoise = 0f;
     Terrain terrain;
+
     // Start is called before the first frame update
     void Start()
     {

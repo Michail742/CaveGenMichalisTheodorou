@@ -16,8 +16,7 @@ public class MapGenerator : MonoBehaviour {
 
 	int[,] map;
 
-	public float perlinHeight = 0.02f;
-	public float perlinScale = 20.0f;
+	
 
 	void Start() {
 		GenerateMap();
