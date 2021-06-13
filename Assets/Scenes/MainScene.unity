@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d60a45509bd47c43aecc0eb6064271f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rowsandcolumns: 10
+  rowsandcolumns: 513
   refinement: 0.1
   multiplier: 0.1
 --- !u!1 &475747261
@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d60a45509bd47c43aecc0eb6064271f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rowsandcolumns: 10
+  rowsandcolumns: 513
   refinement: 0.1
   multiplier: 0.1
 --- !u!154 &1000244636
