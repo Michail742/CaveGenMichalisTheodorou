@@ -8,15 +8,13 @@ public class terrainholes : MonoBehaviour
     [SerializeField] private Terrain terrain;
     void Start()
     {
-        var b = new bool[175 , 0];
+        var b = new bool[100 , 100];
         for (var x = 0; x < 100; x++)
             for (var y = 0; y < 100; y++)
                 b[x, y] = !(x > 20 && x < 80 && y > 20 && y < 80);
-        terrain.terrainData.SetHoles(0, 0, b);
+        terrain.terrainData.SetHoles(100, 200, b);
 
-    }
-    public void SyncTexture(string texture)
-    {
         
     }
+    
 }
