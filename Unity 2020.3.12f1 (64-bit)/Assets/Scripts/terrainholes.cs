@@ -12,7 +12,7 @@ public class terrainholes : MonoBehaviour
         for (var x = 0; x < 100; x++)
             for (var y = 0; y < 100; y++)
                 b[x, y] = !(x > 20 && x < 80 && y > 20 && y < 80);
-        terrain.terrainData.SetHoles(100, 200, b);
+        terrain.terrainData.SetHoles(100, 100, b);
 
         
     }
