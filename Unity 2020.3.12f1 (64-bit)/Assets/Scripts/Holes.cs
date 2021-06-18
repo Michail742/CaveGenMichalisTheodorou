@@ -7,7 +7,7 @@ using UnityEngine;
 public class Holes : MonoBehaviour
 {
     [SerializeField] 
-     Terrain terrain;
+    public Terrain terrain;
 
     public bool[,] holes;
     public int xBase;
