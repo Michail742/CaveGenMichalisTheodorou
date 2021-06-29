@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 222647823}
   - component: {fileID: 222647822}
   m_Layer: 0
-  m_Name: Instantiates
+  m_Name: Instantiates gameobject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
