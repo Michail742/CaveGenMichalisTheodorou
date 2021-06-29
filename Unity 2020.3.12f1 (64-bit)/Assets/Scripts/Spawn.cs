@@ -14,6 +14,8 @@ public class Spawn : MonoBehaviour
     }
     void spawnSomething()
     {
-        spawnClone[0] = Instantiate(spawnPrefab[0], spawnLocations[0].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+        spawnClone[0] = Instantiate(spawnPrefab[0],
+            spawnLocations[0].transform.position,
+            Quaternion.Euler(0, 0, 0)) as GameObject;
     }
 }
