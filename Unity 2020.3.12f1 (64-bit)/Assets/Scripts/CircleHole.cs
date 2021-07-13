@@ -1,49 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class CircleHole : MonoBehaviour
 {
     [SerializeField]
      Terrain t;
 
-    public bool[,] holes;
+    
     public int holeWidth;
     public int holeHeight;
     public int xPos;
     public int zPos;
-    // Start is called before the first frame update
+    private int offSetX;
+    private bool[,] holes;
+    private int offSetZ;
+
     void Start()
     {
-        int offSetZ = holeWidth / 2;
-        int offSetX = holeHeight / 2;
+         offSetZ = holeWidth / 2;
+         offSetX = holeHeight / 2;
 
-        var b = new bool[holeWidth, holeHeight];
+         holes = new bool[holeWidth, holeHeight];
 
+
+        SetupTerrainHoles(false);
+    }
+    void SetupTerrainHoles(bool deleteHoles)
+    {
         Vector2 originOfCircle = new Vector2(offSetX, offSetZ);
         for (var x = 0; x < holeWidth; x++)
         {
             for (var y = 0; y < holeWidth; y++)
             {
+                holes[x, y] = (deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > offSetX);
 
-                if (Vector2.Distance(new Vector2(x, y), originOfCircle) <= offSetX)
-                {
-                    b[x, y] = false;
-                }
-                else
-                {
-                    b[x, y] = true;
-                }
+                
             }
         }
 
 
-        t.terrainData.SetHoles(xPos - offSetX, zPos - offSetZ, b);
+        t.terrainData.SetHoles(xPos - offSetX, zPos - offSetZ, holes);
     }
-
-    // Update is called once per frame
-    void Update()
+    void OnApplicationQuit()
     {
-        
+
+        SetupTerrainHoles(true);
     }
 }

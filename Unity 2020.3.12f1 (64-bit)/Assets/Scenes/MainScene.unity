@@ -360,7 +360,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239329407}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2146767dcd7db1c43a8abc3f11edf237, type: 3}
   m_Name: 
@@ -394,8 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   t: {fileID: 443076610}
-  holeWidth: 100
-  holeHeight: 100
+  holeWidth: 50
+  holeHeight: 50
   xPos: 350
   zPos: 350
 --- !u!850595691 &1583615461
@@ -772,6 +772,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapGen (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4133946452646617794, guid: a2093b5390a810649b8991b0bcb87c0d,
+        type: 3}
+      propertyPath: randomFillPercent
+      value: 52
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2093b5390a810649b8991b0bcb87c0d, type: 3}
 --- !u!1 &8110161527723481817 stripped
@@ -787,6 +792,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8674077615836900785, guid: 439357ce90129404ba26248ff77c3886,
+        type: 3}
+      propertyPath: m_CookingOptions
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8690657522487227145, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
       propertyPath: m_RootOrder
@@ -847,5 +857,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapGen
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
+        type: 3}
+      propertyPath: useRandomSeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
+        type: 3}
+      propertyPath: randomFillPercent
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690657523403464048, guid: 439357ce90129404ba26248ff77c3886,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8674077615836900785, guid: 439357ce90129404ba26248ff77c3886, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 439357ce90129404ba26248ff77c3886, type: 3}
