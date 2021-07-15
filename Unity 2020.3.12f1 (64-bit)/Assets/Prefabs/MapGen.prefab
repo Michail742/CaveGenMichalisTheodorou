@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8690657522452721867}
   - component: {fileID: 8690657522452721864}
   - component: {fileID: 8690657522452721866}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 8690657523403464051}
   - component: {fileID: 8690657523403464050}
   - component: {fileID: 8674077615836900785}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cave
   m_TagString: Untagged
   m_Icon: {fileID: 0}

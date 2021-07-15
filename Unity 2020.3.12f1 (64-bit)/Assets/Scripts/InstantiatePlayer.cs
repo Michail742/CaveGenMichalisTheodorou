@@ -11,7 +11,7 @@ public class InstantiatePlayer : MonoBehaviour
        
         for (int i = 0; i < 1; i++)
         {
-            Instantiate(prefab, new Vector3(i * 2.0F, 11f, 0), Quaternion.identity);
+            Instantiate(prefab, new Vector3(i * 2.0F, 8f, 0), Quaternion.identity);
         }
     }
 

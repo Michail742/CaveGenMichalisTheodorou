@@ -8,7 +8,6 @@ public class CircleHole : MonoBehaviour
     [SerializeField]
      Terrain t;
 
-    
     public int holeWidth;
     public int holeHeight;
     public int xPos;
@@ -16,6 +15,7 @@ public class CircleHole : MonoBehaviour
     private int offSetX;
     private bool[,] holes;
     private int offSetZ;
+    GameObject RaycastObject;
 
     void Start()
     {
@@ -24,8 +24,7 @@ public class CircleHole : MonoBehaviour
 
          holes = new bool[holeWidth, holeHeight];
 
-
-        SetupTerrainHoles(false);
+         SetupTerrainHoles(false);
     }
     void SetupTerrainHoles(bool deleteHoles)
     {
@@ -36,16 +35,13 @@ public class CircleHole : MonoBehaviour
             {
                 holes[x, y] = (deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > offSetX);
 
-                
             }
         }
-
 
         t.terrainData.SetHoles(xPos - offSetX, zPos - offSetZ, holes);
     }
     void OnApplicationQuit()
     {
-
         SetupTerrainHoles(true);
     }
 }
