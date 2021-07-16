@@ -15,7 +15,6 @@ public class CircleHole : MonoBehaviour
     private int offSetX;
     private bool[,] holes;
     private int offSetZ;
-    GameObject RaycastObject;
 
     void Start()
     {

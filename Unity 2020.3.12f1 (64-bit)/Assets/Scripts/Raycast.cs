@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Raycast : MonoBehaviour
 {
+    public float sphereRadius;
+    public float maxDistance;
+    public LayerMask layerMask;
+    public GameObject currentHitObject;
+
+    private Vector3 origin;
+    private Vector3 direction;
+    private float currentHitDistance;
+
     void Update()
     {
         // Bit shift the index of the layer (8) to get a bit mask
@@ -15,16 +24,23 @@ public class Raycast : MonoBehaviour
 
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, Mathf.Infinity, layerMask))
+        if (Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.green);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
             Debug.Log("Did Hit");
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 1000, Color.red);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red);
             Debug.Log("Did not Hit");
         }
+        
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Debug.DrawLine(origin, origin + direction * currentHitDistance);
+        Gizmos.DrawWireSphere(origin + direction * currentHitDistance, sphereRadius);
     }
 }
 
