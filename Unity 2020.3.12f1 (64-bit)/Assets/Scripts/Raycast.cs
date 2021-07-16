@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Raycast : MonoBehaviour
 {
-    
-    void FixedUpdate()
+    void Update()
     {
         // Bit shift the index of the layer (8) to get a bit mask
         int layerMask = 1 << 8;
@@ -28,3 +27,4 @@ public class Raycast : MonoBehaviour
         }
     }
 }
+
