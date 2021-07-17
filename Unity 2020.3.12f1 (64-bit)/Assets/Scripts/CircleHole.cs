@@ -32,7 +32,7 @@ public class CircleHole : MonoBehaviour
         {
             for (var y = 0; y < holeWidth; y++)
             {
-                holes[x, y] = (deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > offSetX);
+                holes[x, y] = deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > offSetX;
 
             }
         }
