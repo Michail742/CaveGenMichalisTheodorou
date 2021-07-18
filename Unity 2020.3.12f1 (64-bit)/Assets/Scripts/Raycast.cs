@@ -17,8 +17,8 @@ public class Raycast : MonoBehaviour
 
     void Start()
     {
-        GameObject TerrainHoles = GameObject.FindGameObjectWithTag("Holes");
-        CircleHole circleHole = TerrainHoles.GetComponent<CircleHole>();
+        //GameObject TerrainHoles = GameObject.FindGameObjectWithTag("Holes");
+        //CircleHole circleHole = TerrainHoles.GetComponent<CircleHole>();
         
     }
     void Update()
@@ -33,7 +33,7 @@ public class Raycast : MonoBehaviour
         {
             //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
             Debug.Log("Did Hit");
-            CircleHole circleHole = TerrainHoles.GetComponent<CircleHole>();
+            //CircleHole circleHole = TerrainHoles.GetComponent<CircleHole>();
         }
         //else
         //{

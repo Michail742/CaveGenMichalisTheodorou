@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &120544593 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8690657522452721462, guid: 439357ce90129404ba26248ff77c3886,
-    type: 3}
-  m_PrefabInstance: {fileID: 8690657522013839561}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &222647821
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +344,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 927083686}
-  - component: {fileID: 927083685}
   m_Layer: 0
   m_Name: RaycastObject
   m_TagString: Untagged
@@ -358,24 +351,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &927083685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 927083684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b089b1a803f58d245b67d340f0b0f46f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sphereRadius: 10
-  maxDistance: 100
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  currentHitObject: {fileID: 120544593}
 --- !u!4 &927083686
 Transform:
   m_ObjectHideFlags: 0
@@ -390,6 +365,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1219161237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8690657522755493446, guid: 439357ce90129404ba26248ff77c3886,
+    type: 3}
+  m_PrefabInstance: {fileID: 8690657522013839561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1239329407
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +419,12 @@ MonoBehaviour:
   holeHeight: 100
   xPos: 256
   zPos: 256
+  sphereRadius: 10
+  maxDistance: 100
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  currentHitObject: {fileID: 1219161237}
 --- !u!850595691 &1583615461
 LightingSettings:
   m_ObjectHideFlags: 0
