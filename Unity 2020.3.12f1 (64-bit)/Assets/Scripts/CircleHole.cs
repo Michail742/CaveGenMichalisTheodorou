@@ -42,7 +42,7 @@ public class CircleHole : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal))
+        if (!Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal))
         {
 
             Vector2 originOfCircle = new Vector2(offSetX, offSetZ);
