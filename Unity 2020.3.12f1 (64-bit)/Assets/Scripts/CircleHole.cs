@@ -57,6 +57,9 @@ public class CircleHole : MonoBehaviour
 
             t.terrainData.SetHoles(xPos - offSetX, zPos - offSetZ, holes);
         }
+        MeshCollider meshCollider = hit.collider as MeshCollider;
+        if (meshCollider == null || meshCollider.sharedMesh == null)
+            return;
     }
     void OnApplicationQuit()
     {
