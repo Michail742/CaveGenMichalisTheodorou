@@ -86,8 +86,11 @@ public class MeshGenerator : MonoBehaviour {
 		wallMesh.vertices = wallVertices.ToArray ();
 		wallMesh.triangles = wallTriangles.ToArray ();
 		walls.mesh = wallMesh;
-
-		MeshCollider wallCollider = gameObject.AddComponent<MeshCollider> ();
+		wallMesh.RecalculateNormals(UnityEngine.Rendering.MeshUpdateFlags.Default);
+		walls.gameObject.layer = 6;
+		Debug.Log("createdWalls");
+		MeshCollider wallCollider = walls.gameObject.AddComponent<MeshCollider> ();
+		
 		wallCollider.sharedMesh = wallMesh;
 	}
 

@@ -18,13 +18,16 @@ public class CircleHole : MonoBehaviour
     private int offSetZ;
 
     //ray
-    private Vector3 origin;
-    private Vector3 direction;
+    public Vector3 origin;
+    private Vector3 direction = Vector3.down;
     private float currentHitDistance;
     public float sphereRadius;
     public float maxDistance;
     public LayerMask layerMask;
-    public GameObject currentHitObject;
+    //spawn
+    public Transform[] spawnLocations;
+    public GameObject[] spawnPrefab;
+    public GameObject[] spawnClone;
     void Start()
     {
          offSetZ = holeWidth / 2;
@@ -34,15 +37,23 @@ public class CircleHole : MonoBehaviour
 
          SetupTerrainHoles(false);
     }
+    private void Update()
+    {
+        var hasWalls = Physics.SphereCast(new Ray(origin, direction), sphereRadius, maxDistance, layerMask);
+        Debug.Log(hasWalls);
+
+    }
     void SetupTerrainHoles(bool deleteHoles)
     {
-        int layerMask = 1 << 8;
-
-        layerMask = ~layerMask;
-
+        Debug.Log("creatingHoles");
         RaycastHit hit;
+        //var hasWalls = Physics.CheckSphere(origin, sphereRadius, layerMask);
+        var hasWalls = Physics.SphereCast(new Ray(origin,direction), sphereRadius, maxDistance, layerMask);
+        
+        //var hasWalls = Physics.Raycast(origin, direction, out hit, maxDistance, layerMask);
 
-        if (!Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal))
+        Debug.Log(hasWalls);
+        if (!hasWalls)
         {
 
             Vector2 originOfCircle = new Vector2(offSetX, offSetZ);
@@ -57,9 +68,7 @@ public class CircleHole : MonoBehaviour
 
             t.terrainData.SetHoles(xPos - offSetX, zPos - offSetZ, holes);
         }
-        MeshCollider meshCollider = hit.collider as MeshCollider;
-        if (meshCollider == null || meshCollider.sharedMesh == null)
-            return;
+        
     }
     void OnApplicationQuit()
     {
@@ -68,7 +77,12 @@ public class CircleHole : MonoBehaviour
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Debug.DrawLine(origin, origin + direction * currentHitDistance);
-        Gizmos.DrawWireSphere(origin + direction * currentHitDistance, sphereRadius);
+
+        var spheres = maxDistance / (sphereRadius * 2); 
+        for(var i = 0f; i<maxDistance; i += sphereRadius * 2)
+        {
+            Gizmos.DrawWireSphere(origin + direction * i, sphereRadius);
+
+        }
     }
 }
