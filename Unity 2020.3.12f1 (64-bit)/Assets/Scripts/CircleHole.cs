@@ -24,6 +24,7 @@ public class CircleHole : MonoBehaviour
     public float sphereRadius;
     public float maxDistance;
     public LayerMask layerMask;
+
     //spawn
     public Transform[] spawnLocations;
     public GameObject[] spawnPrefab;
@@ -46,10 +47,10 @@ public class CircleHole : MonoBehaviour
     void SetupTerrainHoles(bool deleteHoles)
     {
         Debug.Log("creatingHoles");
-        RaycastHit hit;
+        //RaycastHit hit;
         //var hasWalls = Physics.CheckSphere(origin, sphereRadius, layerMask);
         var hasWalls = Physics.SphereCast(new Ray(origin,direction), sphereRadius, maxDistance, layerMask);
-        
+        //var hasWalls = Physics.OverlapSphere(origin, sphereRadius);
         //var hasWalls = Physics.Raycast(origin, direction, out hit, maxDistance, layerMask);
 
         Debug.Log(hasWalls);
