@@ -16,10 +16,12 @@ public class MapGenerator : MonoBehaviour {
 
 	int[,] map;
 
-	
+	public CircleHole hole;
 
 	void Awake() {
 		GenerateMap();
+		hole = FindObjectOfType<CircleHole>();
+		hole.SetupTerrainHoles(hole);
 	}
 
 	void Update() {
@@ -86,7 +88,12 @@ public class MapGenerator : MonoBehaviour {
 		survivingRooms [0].isMainRoom = true;
 		survivingRooms [0].isAccessibleFromMainRoom = true;
 
+		Coord cave = survivingRooms[survivingRooms.Count - 1].GetRandomCoordInRoom();
+		Vector3 caveSpawnPosition = new Vector3(cave.tileX, 0.0f, cave.tileY);
+
 		ConnectClosestRooms (survivingRooms);
+
+		
 	}
 
 	void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false) {
@@ -353,6 +360,9 @@ public class MapGenerator : MonoBehaviour {
 
 
 	class Room : IComparable<Room> {
+
+		
+
 		public List<Coord> tiles;
 		public List<Coord> edgeTiles;
 		public List<Room> connectedRooms;
@@ -408,6 +418,17 @@ public class MapGenerator : MonoBehaviour {
 		public int CompareTo(Room otherRoom) {
 			return otherRoom.roomSize.CompareTo (roomSize);
 		}
-	}
+		public Coord GetRandomCoordInRoom()
+		{
+			string seed = Time.time.ToString();
+			System.Random pseudoRandom = new System.Random(seed.GetHashCode());
+			return tiles[pseudoRandom.Next(0, tiles.Count - 1)];
 
+            
+		}
+
+        
+		
+	}
+	
 }

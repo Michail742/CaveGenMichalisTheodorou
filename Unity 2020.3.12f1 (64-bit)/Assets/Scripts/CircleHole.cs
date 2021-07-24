@@ -17,19 +17,8 @@ public class CircleHole : MonoBehaviour
     private bool[,] holes;
     private int offSetZ;
 
-    //ray
-    public Vector3 origin;
-    private Vector3 direction = Vector3.down;
-    private float currentHitDistance;
-    public float sphereRadius;
-    public float maxDistance;
-    public LayerMask layerMask;
-
-    //spawn
-    public Transform[] spawnLocations;
-    public GameObject[] spawnPrefab;
-    public GameObject[] spawnClone;
-    void Start()
+    
+    public void Start()
     {
          offSetZ = holeWidth / 2;
          offSetX = holeHeight / 2;
@@ -38,24 +27,10 @@ public class CircleHole : MonoBehaviour
 
          SetupTerrainHoles(false);
     }
-    private void Update()
+    
+    public void SetupTerrainHoles(bool deleteHoles)
     {
-        var hasWalls = Physics.SphereCast(new Ray(origin, direction), sphereRadius, maxDistance, layerMask);
-        Debug.Log(hasWalls);
-
-    }
-    void SetupTerrainHoles(bool deleteHoles)
-    {
-        Debug.Log("creatingHoles");
-        //RaycastHit hit;
-        //var hasWalls = Physics.CheckSphere(origin, sphereRadius, layerMask);
-        var hasWalls = Physics.SphereCast(new Ray(origin,direction), sphereRadius, maxDistance, layerMask);
-        //var hasWalls = Physics.OverlapSphere(origin, sphereRadius);
-        //var hasWalls = Physics.Raycast(origin, direction, out hit, maxDistance, layerMask);
-
-        Debug.Log(hasWalls);
-        if (!hasWalls)
-        {
+        
 
             Vector2 originOfCircle = new Vector2(offSetX, offSetZ);
             for (var x = 0; x < holeWidth; x++)
@@ -68,22 +43,11 @@ public class CircleHole : MonoBehaviour
             }
 
             t.terrainData.SetHoles(xPos - offSetX, zPos - offSetZ, holes);
-        }
-        
+               
     }
     void OnApplicationQuit()
     {
         SetupTerrainHoles(true);
     }
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-
-        var spheres = maxDistance / (sphereRadius * 2); 
-        for(var i = 0f; i<maxDistance; i += sphereRadius * 2)
-        {
-            Gizmos.DrawWireSphere(origin + direction * i, sphereRadius);
-
-        }
-    }
+    
 }
