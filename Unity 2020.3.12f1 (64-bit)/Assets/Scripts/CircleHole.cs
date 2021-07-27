@@ -5,17 +5,18 @@ using UnityEditor;
 
 public class CircleHole : MonoBehaviour
 {
+    //holes for terrain
+
     [SerializeField]
      Terrain t;
 
-    //holes
     public int holeWidth;
     public int holeHeight;
     public int xPos;
     public int zPos;
-    private int offSetX;
-    private bool[,] holes;
-    private int offSetZ;
+    public int offSetX;
+    public bool[,] holes;
+    public int offSetZ;
 
     
     public void Start()
@@ -45,7 +46,7 @@ public class CircleHole : MonoBehaviour
             t.terrainData.SetHoles(xPos - offSetX, zPos - offSetZ, holes);
                
     }
-    void OnApplicationQuit()
+    public void OnApplicationQuit()
     {
         SetupTerrainHoles(true);
     }

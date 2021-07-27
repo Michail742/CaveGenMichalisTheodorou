@@ -5,6 +5,18 @@ using System;
 
 public class MapGenerator : MonoBehaviour {
 
+	//holes for terrain
+	[SerializeField]
+	Terrain t;
+
+	public int holeWidth;
+	public int holeHeight;
+	public int xPos;
+	public int zPos;
+	public int offSetX;
+	public bool[,] holes;
+	public int offSetZ;
+
 	public int width;
 	public int height;
 
@@ -16,17 +28,25 @@ public class MapGenerator : MonoBehaviour {
 
 	int[,] map;
 
-	public CircleHole hole;
+	
 
-	void Awake() {
+	private Vector3 caveSpawnPosition;
+	void Start() {
+		offSetZ = holeWidth / 2;
+		offSetX = holeHeight / 2;
+
+		holes = new bool[holeWidth, holeHeight];
+
 		GenerateMap();
-		hole = FindObjectOfType<CircleHole>();
-		hole.SetupTerrainHoles(hole);
+
+		SetupTerrainHoles(false);
+
 	}
 
 	void Update() {
 		if (Input.GetMouseButtonDown(0)) {
 			GenerateMap();
+			SetupTerrainHoles(false);
 		}
 	}
 
@@ -88,10 +108,13 @@ public class MapGenerator : MonoBehaviour {
 		survivingRooms [0].isMainRoom = true;
 		survivingRooms [0].isAccessibleFromMainRoom = true;
 
+
 		Coord cave = survivingRooms[survivingRooms.Count - 1].GetRandomCoordInRoom();
 		Vector3 caveSpawnPosition = new Vector3(cave.tileX, 0.0f, cave.tileY);
 
-		ConnectClosestRooms (survivingRooms);
+		
+
+		ConnectClosestRooms(survivingRooms);
 
 		
 	}
@@ -358,10 +381,25 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
+	public void SetupTerrainHoles(bool deleteHoles)
+	{
+		Vector2 originOfCircle = new Vector2(caveSpawnPosition.x, caveSpawnPosition.z);
+		for (var x = 0; x < holeWidth; x++)
+		{
+			for (var y = 0; y < holeWidth; y++)
+			{
+				holes[x, y] = deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > offSetX;
 
+			}
+		}
+
+		t.terrainData.SetHoles(xPos - offSetX, zPos - offSetZ, holes);
+	}
+	public void OnApplicationQuit()
+	{
+		SetupTerrainHoles(true);
+	}
 	class Room : IComparable<Room> {
-
-		
 
 		public List<Coord> tiles;
 		public List<Coord> edgeTiles;
@@ -369,6 +407,8 @@ public class MapGenerator : MonoBehaviour {
 		public int roomSize;
 		public bool isAccessibleFromMainRoom;
 		public bool isMainRoom;
+
+		
 
 		public Room() {
 		}
@@ -424,10 +464,9 @@ public class MapGenerator : MonoBehaviour {
 			System.Random pseudoRandom = new System.Random(seed.GetHashCode());
 			return tiles[pseudoRandom.Next(0, tiles.Count - 1)];
 
-            
 		}
 
-        
+		
 		
 	}
 	
