@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60567a9b26aa4894f9225aa800bbfc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1421550744601102305, guid: 01817e302d28e23468f47470f99c783d, type: 3}
+  player: {fileID: 1421550744601102305, guid: 01817e302d28e23468f47470f99c783d, type: 3}
 --- !u!4 &222647823
 Transform:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &243573022
 PrefabInstance:
@@ -187,7 +187,7 @@ PrefabInstance:
     - target: {fileID: 6367796798222215749, guid: 3ea600474b1f9e84cbe02bc7e4ba4d10,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6367796798222215749, guid: 3ea600474b1f9e84cbe02bc7e4ba4d10,
         type: 3}
@@ -244,6 +244,12 @@ PrefabInstance:
 --- !u!218 &443076610 stripped
 Terrain:
   m_CorrespondingSourceObject: {fileID: 8690657522452721867, guid: 439357ce90129404ba26248ff77c3886,
+    type: 3}
+  m_PrefabInstance: {fileID: 8690657522013839561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &527597033 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8690657522487227252, guid: 439357ce90129404ba26248ff77c3886,
     type: 3}
   m_PrefabInstance: {fileID: 8690657522013839561}
   m_PrefabAsset: {fileID: 0}
@@ -465,7 +471,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1817525835513138127
 PrefabInstance:
@@ -482,7 +488,7 @@ PrefabInstance:
     - target: {fileID: 3116184077081343665, guid: d0b4aefd649d89643baef54d17b2a69d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3964739120814141661, guid: d0b4aefd649d89643baef54d17b2a69d,
         type: 3}
@@ -551,7 +557,7 @@ PrefabInstance:
     - target: {fileID: 5033618674665601704, guid: 160fa3771f0198d4b860ca32a0facfc3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5033618674665601704, guid: 160fa3771f0198d4b860ca32a0facfc3,
         type: 3}
@@ -645,6 +651,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5033618674665601711, guid: 160fa3771f0198d4b860ca32a0facfc3,
         type: 3}
+      propertyPath: spawnPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 527597033}
+    - target: {fileID: 5033618674665601711, guid: 160fa3771f0198d4b860ca32a0facfc3,
+        type: 3}
       propertyPath: spawnPrefab.Array.data[1]
       value: 
       objectReference: {fileID: 0}
@@ -734,6 +745,11 @@ PrefabInstance:
       objectReference: {fileID: 443076610}
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
+      propertyPath: seed
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
+        type: 3}
       propertyPath: xPos
       value: 200
       objectReference: {fileID: 0}
@@ -744,6 +760,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 3363592455206896450, guid: ac398a297afa6e541a7ab560ad23b33e,
+        type: 3}
+    - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
+        type: 3}
+      propertyPath: tunnel
+      value: 
+      objectReference: {fileID: 3363592455206896450, guid: ac398a297afa6e541a7ab560ad23b33e,
+        type: 3}
+    - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
+        type: 3}
       propertyPath: holeWidth
       value: 100
       objectReference: {fileID: 0}
@@ -751,6 +779,11 @@ PrefabInstance:
         type: 3}
       propertyPath: holeHeight
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
+        type: 3}
+      propertyPath: useRandomSeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}

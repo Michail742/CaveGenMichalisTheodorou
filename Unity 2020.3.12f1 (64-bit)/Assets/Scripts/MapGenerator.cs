@@ -11,12 +11,16 @@ public class MapGenerator : MonoBehaviour {
 
 	public int holeWidth;
 	public int holeHeight;
+
 	public int xPos;
 	public int zPos;
+	
 	public int offSetX;
-	public bool[,] holes;
 	public int offSetZ;
 
+	public bool[,] holes;
+
+	//MapGeneration
 	public int width;
 	public int height;
 
@@ -28,13 +32,13 @@ public class MapGenerator : MonoBehaviour {
 
 	int[,] map;
 
-	
-
 	private Vector3 caveSpawnPosition;
-	void Start() {
+    public GameObject tunnel;
+
+    void Start() {
+		
 		offSetZ = holeWidth / 2;
 		offSetX = holeHeight / 2;
-
 		holes = new bool[holeWidth, holeHeight];
 
 		GenerateMap();
@@ -46,7 +50,7 @@ public class MapGenerator : MonoBehaviour {
 	void Update() {
 		if (Input.GetMouseButtonDown(0)) {
 			GenerateMap();
-			SetupTerrainHoles(false);
+			
 		}
 	}
 
@@ -112,7 +116,12 @@ public class MapGenerator : MonoBehaviour {
 		Coord cave = survivingRooms[survivingRooms.Count - 1].GetRandomCoordInRoom();
 		Vector3 caveSpawnPosition = new Vector3(cave.tileX, 0.0f, cave.tileY);
 
-		
+
+
+		for (int i = 0; i < 1; i++)
+		{
+            Instantiate(tunnel, new Vector3(i * cave.tileX, cave.tileY, 0), Quaternion.identity);
+		}
 
 		ConnectClosestRooms(survivingRooms);
 
@@ -395,10 +404,7 @@ public class MapGenerator : MonoBehaviour {
 
 		t.terrainData.SetHoles(xPos - offSetX, zPos - offSetZ, holes);
 	}
-	public void OnApplicationQuit()
-	{
-		SetupTerrainHoles(true);
-	}
+	
 	class Room : IComparable<Room> {
 
 		public List<Coord> tiles;
@@ -465,9 +471,10 @@ public class MapGenerator : MonoBehaviour {
 			return tiles[pseudoRandom.Next(0, tiles.Count - 1)];
 
 		}
-
-		
-		
-	}
 	
+	}
+	public void OnApplicationQuit()
+	{
+		SetupTerrainHoles(true);
+	}
 }

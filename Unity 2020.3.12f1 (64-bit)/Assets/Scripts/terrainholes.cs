@@ -5,7 +5,8 @@ using UnityEngine;
 public class terrainholes : MonoBehaviour
 {
     public Texture texture;
-    [SerializeField] private Terrain terrain;
+    [SerializeField] 
+    Terrain terrain;
     void Start()
     {
         var b = new bool[100 , 100];
