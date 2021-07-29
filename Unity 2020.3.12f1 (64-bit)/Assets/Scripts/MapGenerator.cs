@@ -36,9 +36,10 @@ public class MapGenerator : MonoBehaviour {
     public GameObject tunnel;
 
     void Start() {
-		
+
 		offSetZ = holeWidth / 2;
 		offSetX = holeHeight / 2;
+
 		holes = new bool[holeWidth, holeHeight];
 
 		GenerateMap();
@@ -120,7 +121,7 @@ public class MapGenerator : MonoBehaviour {
 
 		for (int i = 0; i < 1; i++)
 		{
-            Instantiate(tunnel, new Vector3(i * cave.tileX, cave.tileY, 0), Quaternion.identity);
+             Instantiate(tunnel, new Vector3(i * cave.tileX, 0.0f, cave.tileY), Quaternion.identity);
 		}
 
 		ConnectClosestRooms(survivingRooms);
@@ -398,7 +399,6 @@ public class MapGenerator : MonoBehaviour {
 			for (var y = 0; y < holeWidth; y++)
 			{
 				holes[x, y] = deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > offSetX;
-
 			}
 		}
 

@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &222647822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,12 +751,12 @@ PrefabInstance:
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
       propertyPath: xPos
-      value: 200
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
       propertyPath: zPos
-      value: 200
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
@@ -773,12 +773,12 @@ PrefabInstance:
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
       propertyPath: holeWidth
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
       propertyPath: holeHeight
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
@@ -832,6 +832,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690657522755493446, guid: 439357ce90129404ba26248ff77c3886,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690657523403464048, guid: 439357ce90129404ba26248ff77c3886,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 439357ce90129404ba26248ff77c3886, type: 3}
