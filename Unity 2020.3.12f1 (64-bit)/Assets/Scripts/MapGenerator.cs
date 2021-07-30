@@ -15,8 +15,8 @@ public class MapGenerator : MonoBehaviour {
 	public int xPos;
 	public int zPos;
 	
-	public int offSetX;
-	public int offSetZ;
+	//public int offSetX;
+	//public int offSetZ;
 
 	public bool[,] holes;
 
@@ -37,8 +37,8 @@ public class MapGenerator : MonoBehaviour {
 
     void Start() {
 
-		offSetZ = holeWidth / 2;
-		offSetX = holeHeight / 2;
+		caveSpawnPosition.z = holeWidth / 2;
+		caveSpawnPosition.x = holeHeight / 2;
 
 		holes = new bool[holeWidth, holeHeight];
 
@@ -117,7 +117,7 @@ public class MapGenerator : MonoBehaviour {
 		Coord cave = survivingRooms[survivingRooms.Count - 1].GetRandomCoordInRoom();
 		Vector3 caveSpawnPosition = new Vector3(cave.tileX, 0.0f, cave.tileY);
 
-
+		
 
 		for (int i = 0; i < 1; i++)
 		{
@@ -126,7 +126,6 @@ public class MapGenerator : MonoBehaviour {
 
 		ConnectClosestRooms(survivingRooms);
 
-		
 	}
 
 	void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false) {
@@ -201,7 +200,8 @@ public class MapGenerator : MonoBehaviour {
 
 	void CreatePassage(Room roomA, Room roomB, Coord tileA, Coord tileB) {
 		Room.ConnectRooms (roomA, roomB);
-		
+		Debug.DrawLine(CoordToWorldPoint(tileA), CoordToWorldPoint(tileB), Color.blue, 200);
+
 
 		List<Coord> line = GetLine (tileA, tileB);
 		foreach (Coord c in line) {
@@ -380,7 +380,7 @@ public class MapGenerator : MonoBehaviour {
 
 		return wallCount;
 	}
-
+	
 	struct Coord {
 		public int tileX;
 		public int tileY;
@@ -391,18 +391,18 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
-	public void SetupTerrainHoles(bool deleteHoles)
-	{
+	public void SetupTerrainHoles(bool deleteHoles) {
+
 		Vector2 originOfCircle = new Vector2(caveSpawnPosition.x, caveSpawnPosition.z);
 		for (var x = 0; x < holeWidth; x++)
 		{
 			for (var y = 0; y < holeWidth; y++)
 			{
-				holes[x, y] = deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > offSetX;
+				holes[x, y] = deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > caveSpawnPosition.x;
 			}
 		}
 
-		t.terrainData.SetHoles(xPos - offSetX, zPos - offSetZ, holes);
+		t.terrainData.SetHoles((int)(caveSpawnPosition.x = xPos), (int)(caveSpawnPosition.z = zPos), holes);
 	}
 	
 	class Room : IComparable<Room> {
@@ -471,6 +471,7 @@ public class MapGenerator : MonoBehaviour {
 			return tiles[pseudoRandom.Next(0, tiles.Count - 1)];
 
 		}
+		
 	
 	}
 	public void OnApplicationQuit()
