@@ -773,12 +773,12 @@ PrefabInstance:
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
       propertyPath: holeWidth
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
       propertyPath: holeHeight
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8690657522487227254, guid: 439357ce90129404ba26248ff77c3886,
         type: 3}
