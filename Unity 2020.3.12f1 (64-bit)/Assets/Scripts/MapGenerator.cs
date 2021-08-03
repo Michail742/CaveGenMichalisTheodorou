@@ -476,7 +476,7 @@ public class MapGenerator : MonoBehaviour
 		}
 	}
 
-	public void SetupTerrainHoles(bool deleteHoles)
+	public void SetupTerrainHoles(bool deleteHoles)//Creator of Circular Holes
 	{
 
 		Vector2 originOfCircle = new Vector2(caveSpawnPosition.x, caveSpawnPosition.z);
@@ -493,7 +493,7 @@ public class MapGenerator : MonoBehaviour
 		t.terrainData.SetHoles((int)caveCoord.x, (int)caveCoord.z, holes);
 	}
 
-	public Vector3 WordCoordToTerrainCoord(Vector3 wordCor, Terrain ter)
+	public Vector3 WordCoordToTerrainCoord(Vector3 wordCor, Terrain ter)//World Coordination to terrain Coordination
 	{
 		Vector3 vecRet = new Vector3();
 		Vector3 terPosition = ter.transform.position;
