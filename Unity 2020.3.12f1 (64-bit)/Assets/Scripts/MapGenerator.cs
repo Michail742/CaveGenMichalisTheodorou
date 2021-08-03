@@ -10,8 +10,12 @@ public class MapGenerator : MonoBehaviour
 	[SerializeField]
 	Terrain t;
 
+	public AnimationCurve holeCurve;
+
 	public int holeWidth;
 	public int holeHeight;
+
+	public int holeSize = 100;
 
 	public int xPos;
 	public int zPos;
@@ -43,8 +47,41 @@ public class MapGenerator : MonoBehaviour
 		caveSpawnPosition.z = holeWidth / 2;
 		caveSpawnPosition.x = holeHeight / 2;
 
-		holes = new bool[holeWidth, holeHeight];
+		holes = new bool[holeSize, holeSize];
+        for (int x = 0; x < holeSize; x++)
+        {
+			var t = (x * 1.0f) / Mathf.FloorToInt(holeSize / 2.0f);
+            if (t > 1.0f)
+            {
+				t = 1.0f - (t - 1.0f);
+            }
+			var holeCount = Mathf.Lerp(1, holeSize, t);
+			holeCount *= holeCurve.Evaluate(t);
+			var counter = 0;
+			Debug.Log($"holeCount:{holeCount} ({x})");
+            for (int y = Mathf.FloorToInt( holeSize/2.0f) - 1; y >= 0; y--)
+            {
+				holes[y, x] = counter > holeCount;
+				counter++;
+				holes[holeSize - 1 - y, x] = counter > holeCount;
+				counter++;
+            }
+    //        for (int y = 0; y < holeSize; y++)
+    //        {
+				//holes[x,y] = false;
+    //        }
+        }
+		//holes = new bool[holeWidth, holeHeight];
+		//holes = new bool[,]{
+		//	{ false,false,false,false,false,false,true,true,true,true,false,false,false,false,false,false},
+		//	{ false,false,false,false,false,true,true,true,true,true,true,false,false,false,false,false},
+		//	{ false,false,false,false,true,true,true,true,true,true,true,true,false,false,false,false},
+		//	{ false,false,false,false,true,true,true,true,true,true,true,true,false,false,false,false},
+		//	{ false,false,false,false,true,true,true,true,true,true,true,true,false,false,false,false},
+		//	{ false,false,false,false,true,true,true,true,true,true,true,true,false,false,false,false},
+		//	{ false,false,false,false,false,true,true,true,true,true,true,false,false,false,false,false}
 
+		//};
 		GenerateMap();
 
 		SetupTerrainHoles(false);
@@ -480,13 +517,13 @@ public class MapGenerator : MonoBehaviour
 	{
 
 		Vector2 originOfCircle = new Vector2(caveSpawnPosition.x, caveSpawnPosition.z);
-		for (var x = 0; x < holeWidth; x++)
-		{
-			for (var y = 0; y < holeWidth; y++)
-			{
-				holes[x, y] = deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > caveSpawnPosition.x;
-			}
-		}
+		//for (var x = 0; x < holeWidth; x++)
+		//{
+		//	for (var y = 0; y < holeWidth; y++)
+		//	{
+		//		holes[x, y] = deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > caveSpawnPosition.x;
+		//	}
+		//}
 
 		Vector3 caveCoord = WordCoordToTerrainCoord(caveSpawnPosition, t);
 
