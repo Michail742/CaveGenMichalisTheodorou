@@ -40,6 +40,7 @@ public class MapGenerator : MonoBehaviour
 	private Vector3 caveSpawnPosition;
 
 	public GameObject tunnel;
+	
 
 	void Start()
 	{
@@ -47,30 +48,7 @@ public class MapGenerator : MonoBehaviour
 		caveSpawnPosition.z = holeWidth / 2;
 		caveSpawnPosition.x = holeHeight / 2;
 
-		holes = new bool[holeSize, holeSize];
-        for (int x = 0; x < holeSize; x++)
-        {
-			var t = (x * 1.0f) / Mathf.FloorToInt(holeSize / 2.0f);
-            if (t > 1.0f)
-            {
-				t = 1.0f - (t - 1.0f);
-            }
-			var holeCount = Mathf.Lerp(1, holeSize, t);
-			holeCount *= holeCurve.Evaluate(t);
-			var counter = 0;
-			Debug.Log($"holeCount:{holeCount} ({x})");
-            for (int y = Mathf.FloorToInt( holeSize/2.0f) - 1; y >= 0; y--)
-            {
-				holes[y, x] = counter > holeCount;
-				counter++;
-				holes[holeSize - 1 - y, x] = counter > holeCount;
-				counter++;
-            }
-    //        for (int y = 0; y < holeSize; y++)
-    //        {
-				//holes[x,y] = false;
-    //        }
-        }
+		
 		//holes = new bool[holeWidth, holeHeight];
 		//holes = new bool[,]{
 		//	{ false,false,false,false,false,false,true,true,true,true,false,false,false,false,false,false},
@@ -83,18 +61,15 @@ public class MapGenerator : MonoBehaviour
 
 		//};
 		GenerateMap();
-
+		
 		SetupTerrainHoles(false);
+		Instantiate(tunnel, new Vector3(caveSpawnPosition.x, -2.9f, caveSpawnPosition.z), Quaternion.identity);
 
 	}
 
 	void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			GenerateMap();
-
-		}
+		
 	}
 
 	void GenerateMap()
@@ -175,11 +150,8 @@ public class MapGenerator : MonoBehaviour
 
 
 
-		//for (int i = 0; i < 1; i++)
-		//{
-		//    Instantiate(tunnel, new Vector3(i * cave.tileX, 0.0f, cave.tileY), Quaternion.identity);
-		//}
-		Instantiate(tunnel, caveSpawnPosition, Quaternion.identity);
+		
+		
 
 
 		ConnectClosestRooms(survivingRooms);
@@ -517,6 +489,30 @@ public class MapGenerator : MonoBehaviour
 	{
 
 		Vector2 originOfCircle = new Vector2(caveSpawnPosition.x, caveSpawnPosition.z);
+		holes = new bool[holeSize, holeSize];
+        for (int x = 0; x < holeSize; x++)
+        {
+			var t = (x * 1.0f) / Mathf.FloorToInt(holeSize / 2.0f);
+            if (t > 1.0f)
+            {
+				t = 1.0f - (t - 1.0f);
+            }
+			var holeCount = Mathf.Lerp(1, holeSize, t);
+			holeCount *= holeCurve.Evaluate(t);
+			var counter = 0;
+			Debug.Log($"holeCount:{holeCount} ({x})");
+            for (int y = Mathf.FloorToInt( holeSize/2.0f) - 1; y >= 0; y--)
+            {
+				holes[y, x] = counter > holeCount;
+				counter++;
+				holes[holeSize - 1 - y, x] = counter > holeCount;
+				counter++;
+            }
+    //        for (int y = 0; y < holeSize; y++)
+    //        {
+				//holes[x,y] = false;
+    //        }
+        }
 		//for (var x = 0; x < holeWidth; x++)
 		//{
 		//	for (var y = 0; y < holeWidth; y++)
@@ -530,7 +526,7 @@ public class MapGenerator : MonoBehaviour
 		t.terrainData.SetHoles((int)caveCoord.x, (int)caveCoord.z, holes);
 	}
 
-	public Vector3 WordCoordToTerrainCoord(Vector3 wordCor, Terrain ter)//World Coordination to terrain Coordination
+	public Vector3 WordCoordToTerrainCoord(Vector3 wordCor, Terrain ter)//Convert World Coordination to terrain Coordination
 	{
 		Vector3 vecRet = new Vector3();
 		Vector3 terPosition = ter.transform.position;
