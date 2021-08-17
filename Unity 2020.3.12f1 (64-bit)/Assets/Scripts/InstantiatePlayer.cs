@@ -8,11 +8,7 @@ public class InstantiatePlayer : MonoBehaviour
     public Transform player;
     public void Start()
     {
-       
-        for (int i = 0; i < 1; i++)
-        {
-            Instantiate(player, new Vector3(i * 2.0F, 8f, 0), Quaternion.identity);
-        }
+            Instantiate(player, new Vector3(2.0F, -3.5f, 0), Quaternion.identity);
     }
 
     

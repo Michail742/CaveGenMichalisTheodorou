@@ -5,7 +5,7 @@ using System;
 
 public class MapGenerator : MonoBehaviour
 {
-
+	
 	//holes for terrain
 	[SerializeField]
 	Terrain t;
@@ -39,16 +39,18 @@ public class MapGenerator : MonoBehaviour
 
 	private Vector3 caveSpawnPosition;
 
-	public GameObject tunnel;
-	
+	public Transform player;
+
+	public GameObject Mapgen2;
 
 	void Start()
 	{
+		Instantiate(player, new Vector3(caveSpawnPosition.x, -3.5f, caveSpawnPosition.z), Quaternion.identity);
 
 		caveSpawnPosition.z = holeWidth / 2;
 		caveSpawnPosition.x = holeHeight / 2;
 
-		
+
 		//holes = new bool[holeWidth, holeHeight];
 		//holes = new bool[,]{
 		//	{ false,false,false,false,false,false,true,true,true,true,false,false,false,false,false,false},
@@ -61,15 +63,23 @@ public class MapGenerator : MonoBehaviour
 
 		//};
 		GenerateMap();
-		
+
+
 		SetupTerrainHoles(false);
-		Instantiate(tunnel, new Vector3(caveSpawnPosition.x, -2.9f, caveSpawnPosition.z), Quaternion.identity);
+
+		Mapgen2.SetActive(true);
+
+		Mapgen2.GetComponent<MapGenerator2>().GenerateMap();
+		Mapgen2.GetComponent<MapGenerator2>().ChangePivot();
+
+		Mapgen2.transform.position = new Vector3(caveSpawnPosition.x, transform.position.y - 7f, caveSpawnPosition.z);
+
 
 	}
 
 	void Update()
 	{
-		
+
 	}
 
 	void GenerateMap()
@@ -150,8 +160,8 @@ public class MapGenerator : MonoBehaviour
 
 
 
-		
-		
+
+
 
 
 		ConnectClosestRooms(survivingRooms);
@@ -490,29 +500,29 @@ public class MapGenerator : MonoBehaviour
 
 		Vector2 originOfCircle = new Vector2(caveSpawnPosition.x, caveSpawnPosition.z);
 		holes = new bool[holeSize, holeSize];
-        for (int x = 0; x < holeSize; x++)
-        {
+		for (int x = 0; x < holeSize; x++)
+		{
 			var t = (x * 1.0f) / Mathf.FloorToInt(holeSize / 2.0f);
-            if (t > 1.0f)
-            {
+			if (t > 1.0f)
+			{
 				t = 1.0f - (t - 1.0f);
-            }
+			}
 			var holeCount = Mathf.Lerp(1, holeSize, t);
 			holeCount *= holeCurve.Evaluate(t);
 			var counter = 0;
 			Debug.Log($"holeCount:{holeCount} ({x})");
-            for (int y = Mathf.FloorToInt( holeSize/2.0f) - 1; y >= 0; y--)
-            {
+			for (int y = Mathf.FloorToInt(holeSize / 2.0f) - 1; y >= 0; y--)
+			{
 				holes[y, x] = counter > holeCount;
 				counter++;
 				holes[holeSize - 1 - y, x] = counter > holeCount;
 				counter++;
-            }
-    //        for (int y = 0; y < holeSize; y++)
-    //        {
-				//holes[x,y] = false;
-    //        }
-        }
+			}
+			//        for (int y = 0; y < holeSize; y++)
+			//        {
+			//holes[x,y] = false;
+			//        }
+		}
 		//for (var x = 0; x < holeWidth; x++)
 		//{
 		//	for (var y = 0; y < holeWidth; y++)
@@ -545,10 +555,9 @@ public class MapGenerator : MonoBehaviour
 		public int roomSize;
 		public bool isAccessibleFromMainRoom;
 		public bool isMainRoom;
+        
 
-
-
-		public Room()
+        public Room()
 		{
 		}
 
@@ -617,6 +626,7 @@ public class MapGenerator : MonoBehaviour
 			//string seed = Time.time.ToString();
 			//System.Random pseudoRandom = new System.Random(seed.GetHashCode());
 			//return tiles[pseudoRandom.Next(0, tiles.Count - 1)];
+			
 			return tiles[UnityEngine.Random.Range(0, tiles.Count - 1)];
 		}
 
