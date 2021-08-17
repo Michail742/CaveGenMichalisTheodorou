@@ -495,8 +495,8 @@ public class MapGenerator : MonoBehaviour
 		}
 	}
 
-	public void SetupTerrainHoles(bool deleteHoles)//Creator of Circular Holes
-	{
+	//Creator of Circular Holes
+	public void SetupTerrainHoles(bool deleteHoles){
 
 		Vector2 originOfCircle = new Vector2(caveSpawnPosition.x, caveSpawnPosition.z);
 		holes = new bool[holeSize, holeSize];
@@ -518,26 +518,17 @@ public class MapGenerator : MonoBehaviour
 				holes[holeSize - 1 - y, x] = counter > holeCount;
 				counter++;
 			}
-			//        for (int y = 0; y < holeSize; y++)
-			//        {
-			//holes[x,y] = false;
-			//        }
+			
 		}
-		//for (var x = 0; x < holeWidth; x++)
-		//{
-		//	for (var y = 0; y < holeWidth; y++)
-		//	{
-		//		holes[x, y] = deleteHoles || Vector2.Distance(new Vector2(x, y), originOfCircle) > caveSpawnPosition.x;
-		//	}
-		//}
+		
 
 		Vector3 caveCoord = WordCoordToTerrainCoord(caveSpawnPosition, t);
 
 		t.terrainData.SetHoles((int)caveCoord.x, (int)caveCoord.z, holes);
 	}
 
-	public Vector3 WordCoordToTerrainCoord(Vector3 wordCor, Terrain ter)//Convert World Coordination to terrain Coordination
-	{
+	//Convert World Coordination to terrain Coordination
+	public Vector3 WordCoordToTerrainCoord(Vector3 wordCor, Terrain ter){
 		Vector3 vecRet = new Vector3();
 		Vector3 terPosition = ter.transform.position;
 		vecRet.x = ((wordCor.x - terPosition.x) / ter.terrainData.size.x) * ter.terrainData.alphamapWidth;
@@ -546,8 +537,7 @@ public class MapGenerator : MonoBehaviour
 	}
 
 
-	class Room : IComparable<Room>
-	{
+	class Room : IComparable<Room>{
 
 		public List<Coord> tiles;
 		public List<Coord> edgeTiles;

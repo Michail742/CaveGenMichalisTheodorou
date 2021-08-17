@@ -174,7 +174,8 @@ MonoBehaviour:
   seed: 
   useRandomSeed: 1
   randomFillPercent: 45
-  tunnel: {fileID: 3059077366713217916, guid: ac398a297afa6e541a7ab560ad23b33e, type: 3}
+  player: {fileID: 0}
+  Mapgen2: {fileID: 0}
 --- !u!114 &8690657522487227255
 MonoBehaviour:
   m_ObjectHideFlags: 0
