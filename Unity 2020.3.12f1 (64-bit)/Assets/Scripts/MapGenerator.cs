@@ -51,17 +51,7 @@ public class MapGenerator : MonoBehaviour
 		caveSpawnPosition.x = holeHeight / 2;
 
 
-		//holes = new bool[holeWidth, holeHeight];
-		//holes = new bool[,]{
-		//	{ false,false,false,false,false,false,true,true,true,true,false,false,false,false,false,false},
-		//	{ false,false,false,false,false,true,true,true,true,true,true,false,false,false,false,false},
-		//	{ false,false,false,false,true,true,true,true,true,true,true,true,false,false,false,false},
-		//	{ false,false,false,false,true,true,true,true,true,true,true,true,false,false,false,false},
-		//	{ false,false,false,false,true,true,true,true,true,true,true,true,false,false,false,false},
-		//	{ false,false,false,false,true,true,true,true,true,true,true,true,false,false,false,false},
-		//	{ false,false,false,false,false,true,true,true,true,true,true,false,false,false,false,false}
-
-		//};
+		
 		GenerateMap();
 
 
@@ -495,7 +485,7 @@ public class MapGenerator : MonoBehaviour
 		}
 	}
 
-	//Creator of Circular Holes
+	//Create Circular Holes
 	public void SetupTerrainHoles(bool deleteHoles){
 
 		Vector2 originOfCircle = new Vector2(caveSpawnPosition.x, caveSpawnPosition.z);
@@ -613,9 +603,6 @@ public class MapGenerator : MonoBehaviour
 		}
 		public Coord GetRandomCoordInRoom()
 		{
-			//string seed = Time.time.ToString();
-			//System.Random pseudoRandom = new System.Random(seed.GetHashCode());
-			//return tiles[pseudoRandom.Next(0, tiles.Count - 1)];
 			
 			return tiles[UnityEngine.Random.Range(0, tiles.Count - 1)];
 		}

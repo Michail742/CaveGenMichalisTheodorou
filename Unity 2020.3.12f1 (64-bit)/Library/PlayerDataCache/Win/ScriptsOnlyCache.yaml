@@ -1,14 +1,12 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - InstantiatePlayer
     - MapGenerator
     - MapGenerator2
     - MeshGenerator
     - MouseLook
     - Movement
     - PerlinNoise
-    - Spawn
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -66,10 +64,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 2698}
     - Class: 114
       Script: {instanceID: 2726}
-    - Class: 114
-      Script: {instanceID: 3118}
-    - Class: 114
-      Script: {instanceID: 4116}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 143
@@ -397,12 +391,6 @@ ScriptsOnlyBuild:
     className: BaseInput
   - hash:
       serializedVersion: 2
-      Hash: 65b3a3b9a7779d539ec75a3ceddebdba
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: InstantiatePlayer
-  - hash:
-      serializedVersion: 2
       Hash: 18c222bef9ae745ce69ddde9b74337ca
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -455,12 +443,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Dropdown
-  - hash:
-      serializedVersion: 2
-      Hash: 039d0f7ff67293ae09354bb8a99b86a8
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: terrainholes
   - hash:
       serializedVersion: 2
       Hash: a5781dc71a671b1ad2b38de19f24b71f
@@ -545,12 +527,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ScrollbarEventHandler
-  - hash:
-      serializedVersion: 2
-      Hash: e6e7006cbac3550b5a1198597480375a
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Spawn
   - hash:
       serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
